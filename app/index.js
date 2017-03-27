@@ -1,41 +1,71 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 
-var HelloWorld = React.createClass({
-  render: function(){
-    return (<div>Hello, {this.props.name}</div>)
+var USER_DATA = {
+  name: 'Tyler McGinnis',
+  username: 'tylermcginnis',
+  image: 'https://avatars0.githubusercontent.com/u/2933430?v=3$s=460'
+}
+
+/*
+  All React components should be:
+  Focused
+  Independent
+  Reusable
+  Small
+  Testable
+*/
+
+var ProfilePic = React.createClass({
+  render: function () {
+    return <img src={this.props.imageUrl} style={{height: 100, width: 100}}></img>
+  }
+});
+
+var Link = React.createClass({
+  changeUrl: function() {
+    window.location.replace(this.props.href)
+  },
+  render: function() {
+    return (
+      <span
+        style={{color: 'blue', cursor: 'pointer'}}
+        onClick={this.changeUrl}>
+        {this.props.children}
+      </span>
+    );
   }
 })
 
-// Parent component
-var FriendsContainer = React.createClass({
-  render: function(){
-    var name = "Steve"
-    var coworkers = ["Todd", "Steven", "Rachel", "Phil"]
+var ProfileLink = React.createClass({
+  render: function () {
     return (
       <div>
-        <h3>Name: {name}</h3>
-        <ShowList names={coworkers} />
+        <Link href={'https://www.github.com/' +  this.props.username}>
+          {this.props.username}
+        </Link>
       </div>
-    )
+    );
   }
-})
+});
 
-// Child component
-var ShowList = React.createClass({
-  render: function(){
-    var listItems = this.props.names.map(function(coworker){ return <li> {coworker} </li>; })
-    return (
+var ProfileName = React.createClass({
+  render: function (){
+    return <div>{this.props.name}</div>
+  }
+});
+
+var Avatar = React.createClass({
+  render: function () {
+    return(
       <div>
-        <h3> Coworkers: </h3>
-        <ul>{listItems}</ul>
+        <ProfilePic imageUrl={this.props.user.image}/>
+        <ProfileName name={this.props.user.name}/>
+        <ProfileLink username={this.props.user.username}/>
       </div>
-    )
+    );
   }
-})
+});
 
 
-
-// ReactDOM.render(<HelloWorld name="Steve"/>, document.getElementById('app'))
-
-ReactDOM.render(<FriendsContainer />, document.getElementById('app'))
+ReactDOM.render(<Avatar user={USER_DATA} />, document.getElementById('app'));
