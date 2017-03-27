@@ -3,7 +3,7 @@ var Main = React.createClass({
   render: function() {
     return (
       <div className="main-container">
-        Main component placeholder
+        Navbar placeholder
         {this.props.children}
       </div>
     );
