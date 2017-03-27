@@ -11,7 +11,7 @@ module.exports = {
   ],
   module: {
     loaders: [
-      {test: /\.coffee$/, exclude: /node_modules/, loader: "coffee-loader"}
+      {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"}
     ]
   },
   output: {
