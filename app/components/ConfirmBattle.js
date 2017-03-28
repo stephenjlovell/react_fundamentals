@@ -1,9 +1,9 @@
 var React = require('react')
 
-function ConfirmBattle() {
-  return (
-    <div>Battle underway!</div>
-  )
+function ConfirmBattle(props){
+  return props.isLoading === true
+      ? (<p>Loading...</p>)
+      : (<p>Battle underway!</p>)
 }
 
 module.exports = ConfirmBattle
