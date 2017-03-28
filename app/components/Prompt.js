@@ -3,6 +3,7 @@ var PropTypes = React.PropTypes;
 
 var transparentBg = require('../styles').transparentBg
 
+// Prompt is an example of a "functional stateless component"
 function Prompt(props) {
   return (
     <div className="jumbotron col-sm-6 col-sm-offset-3 text-center" style={transparentBg}>
@@ -30,6 +31,7 @@ function Prompt(props) {
   )
 }
 
+// Just declare propTypes on the function body since we're using a named function.
 Prompt.propTypes = {
   onSubmitUser: PropTypes.func.isRequired,
   onUpdateUser: PropTypes.func.isRequired,
