@@ -22,6 +22,10 @@ function getTotalStars(repos) {
   }, 0)
 }
 
+function evalScore(followers, stars) {
+  return (followers * 3) + stars
+}
+
 function getPlayerData(player) {
   return getRepos(player.login)
     .then(getTotalStars)
@@ -29,7 +33,7 @@ function getPlayerData(player) {
       return {
         followers: player.followers,
         totalStars: totalStars,
-        score: (player.followers * 3) + totalStars
+        score: evalScore(player.followers, totalStars)
       }
     })
 }
@@ -51,13 +55,12 @@ var helpers = {
     })
   },
 
-  puke: function(object) {
-    return (
-      <pre>{JSON.stringify(object, null, ' ')}</pre>
-    )
-  },
+  // puke: function(object) {
+  //   return (
+  //     <pre>{JSON.stringify(object, null, ' ')}</pre>
+  //   )
+  // },
 
-  // shouldn't this be in the ResultsContainer?
   battle: function(players) {
     return calculateScores(players)
   }

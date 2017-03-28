@@ -4,10 +4,12 @@ var PropTypes = React.PropTypes
 var Link = require('react-router').Link
 var UserDetails = require('../components/UserDetails')
 var UserDetailsWrapper = require('../components/UserDetailsWrapper')
+var MainBody = require('../components/MainBody')
 
-function finishedLoading(props) {
+function ConfirmBattle(props) {
+  if(!!props.isLoading) { return (<p>Loading...</p>) }
   return (
-      <div className="jumbotron col-sm-12 text-center" style={styles.transparentBg}>
+      <MainBody>
       <h1>Confirm Players</h1>
       <div className='col-sm-8 col-sm-offset-2'>
         <UserDetailsWrapper header='Player One'>
@@ -27,13 +29,7 @@ function finishedLoading(props) {
           </Link>
         </div>
       </div>
-    </div>)
-}
-
-function ConfirmBattle(props) {
-  return props.isLoading === true
-      ? <p>Loading...</p>
-      : finishedLoading.bind(this)(props)
+    </MainBody>)
 }
 
 ConfirmBattle.PropTypes = {
