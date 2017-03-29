@@ -2,12 +2,14 @@ var React = require('react')
 var styles = require('../styles/')
 var PropTypes = React.PropTypes
 var Link = require('react-router').Link
-var UserDetails = require('../components/UserDetails')
-var UserDetailsWrapper = require('../components/UserDetailsWrapper')
-var MainBody = require('../components/MainBody')
+
+var UserDetails = require('./UserDetails')
+var UserDetailsWrapper = require('./UserDetailsWrapper')
+var MainBody = require('./MainBody')
+var Loading = require('./Loading')
 
 function ConfirmBattle(props) {
-  if(!!props.isLoading) { return (<p>Loading...</p>) }
+  if(!!props.isLoading) { return (<Loading speed={300} text='Loading'/>) }
   return (
       <MainBody>
       <h1>Confirm Players</h1>
@@ -21,7 +23,12 @@ function ConfirmBattle(props) {
       </div>
       <div className='col-sm-8 col-sm-offset-2'>
         <div className='col-sm-12' style={styles.space}>
-          <button type='button' className='btn btn-lg btn-success' onClick={props.onInitiateBattle}>Initiate Battle!</button>
+          <button
+            type='button'
+            className='btn btn-lg btn-success'
+            onClick={props.onInitiateBattle}>
+            Initiate Battle!
+          </button>
         </div>
         <div className='col-sm-12' style={styles.space}>
           <Link to='/playerOne'>

@@ -1,15 +1,17 @@
 var React = require('react')
-var PropTypes = React.PropTypes
-var helpers = require('../utils/githubHelpers')
-var transparentBg = require('../styles')
-var UserDetailsWrapper = require('../components/UserDetailsWrapper')
-var UserDetails = require('../components/UserDetails')
 var Link = require('react-router').Link
+var PropTypes = React.PropTypes
+
+var helpers = require('../utils/githubHelpers')
 var styles = require('../styles')
-var MainBody = require('../components/MainBody')
+
+var UserDetailsWrapper = require('./UserDetailsWrapper')
+var UserDetails = require('./UserDetails')
+var MainBody = require('./MainBody')
+var Loading = require('./Loading')
 
 var Results = function(props) {
-  if(!!props.isLoading) { return (<div>Loading...</div>) }
+  if(!!props.isLoading) { return (<Loading speed={300} text='Loading' />) }
   var results = (props.scores[0] == props.scores[1])
     ? <TieResults />
     : <WinningResults scores={props.scores} playersInfo={props.playersInfo} />
